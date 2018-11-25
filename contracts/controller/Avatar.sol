@@ -25,14 +25,9 @@ contract Avatar is Ownable {
     event ExternalTokenDecreaseApproval(StandardToken indexed _externalToken, address _spender, uint _subtractedValue);
     event ReceiveEther(address indexed _sender, uint _value);
 
-    /**
-    * @dev the constructor takes organization name, native token and reputation system
-    and creates an avatar for a controller
-    */
-    constructor(string _orgName, DAOToken _nativeToken, Reputation _nativeReputation) public {
-        orgName = _orgName;
-        nativeToken = _nativeToken;
-        nativeReputation = _nativeReputation;
+    
+    constructor() public {
+        orgName = "Avatar";
     }
 
     /**
@@ -40,6 +35,20 @@ contract Avatar is Ownable {
     */
     function() public payable {
         emit ReceiveEther(msg.sender, msg.value);
+    }
+
+    /**
+    * @dev the init function takes organization name, native token and reputation system
+    and creates an avatar for a controller
+    */
+    function init(address _owner, string _orgName, DAOToken _nativeToken, Reputation _nativeReputation) external {
+        require(bytes(orgName).length == 0, "Contract is already initialized");
+        require(bytes(_orgName).length > 0, "Avatar organization name must not be empty");
+
+        owner = _owner;
+        orgName = _orgName;
+        nativeToken = _nativeToken;
+        nativeReputation = _nativeReputation;
     }
 
     /**
