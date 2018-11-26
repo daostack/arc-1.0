@@ -18,7 +18,7 @@ contract DAOToken is ERC827Token, MintableToken, BurnableToken {
     uint8 public constant decimals = 18;
     uint public cap;
 
-    
+
     constructor() public {
         name = "DAOToken";
     }
