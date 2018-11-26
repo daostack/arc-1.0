@@ -82,6 +82,7 @@
   },
   "homepage": "https://daostack.io",
   "dependencies": {
+    "@daostack/access_control": "^0.1.0",
     "@daostack/infra": "^0.0.0-alpha.6",
     "@optionality.io/clone-factory": "^0.1.6",
     "ethereumjs-abi": "^0.6.5",
